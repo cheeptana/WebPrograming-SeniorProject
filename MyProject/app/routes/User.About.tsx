@@ -1,6 +1,6 @@
 import Tfooter from "./temp/tfooter";
 import Theader from "./temp/theader";
-export default function AboutPage() {
+export default function UserAbout() {
     return (
         <>
         <header>

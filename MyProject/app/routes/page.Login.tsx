@@ -24,17 +24,30 @@ export default function LoginPage() {
 
             if (response.ok) {
                 const data = await response.json();
-                if (data.userLoggedIn === true) {
+                if (data.islogin === true) {
                     alert('Login Successfull');
-                    localStorage.setItem('userLoggedIn','true');
-                    navigate('/');
+                    localStorage.setItem('isLoggedIn','true');
+                    localStorage.setItem('userId', data.uid);
+                    switch (data.role) {
+                        case 'admin':
+                            navigate('/Admin/Home');
+                            break;
+                        case 'staff':
+                            navigate('/Staff/Home');
+                            break;
+                        case 'user':
+                            navigate('/User/Home');
+                            break;
+                        default:
+                            navigate('/');
+                    }
                 } else {
                     alert(`Login Failed`);
                 }
 
             } else {
                 alert('Invalid Credentials, try again');
-                localStorage.setItem('userLoggedIn','false');
+                localStorage.setItem('isLoggedIn','false');
             }
         } catch (error) {
             console.error(`[ERR] ${error}`);
@@ -67,9 +80,6 @@ export default function LoginPage() {
                                 </div>
                             </div>
                             <div className="flex items-center justify-between mb-6">
-                                <label className="flex items-center text-white">
-                                    <input type="checkbox" className="mr-2" /> Remember Me
-                                </label>
                                 <a href="#" className="text-white">Forget Password ?</a>
                             </div>
                             <button type='submit' className="bg-white text-black py-2 px-4 rounded w-full">Login</button>

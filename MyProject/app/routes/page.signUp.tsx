@@ -11,7 +11,7 @@ export default function ShopPage() {
         const formJson = Object.fromEntries(formData.entries());
         console.log(formJson);
         const resSignUp = await fetch(
-            'http://localhost:3000/api/addSignUp',
+            'http://localhost:3000/api/addUser',
             {
                 method: 'POST',
                 headers: {
@@ -45,7 +45,7 @@ export default function ShopPage() {
                         </div>
                         <h1 className="text-4xl font-bold mb-4">My Account</h1>
                         <h2 className="text-2xl mb-6">Sign Up</h2>
-                        <p className="mb-6">You have account? <a href="./signIn" className="text-blue-300">Login</a></p>
+                        <p className="mb-6">You have account? <a href="./Login" className="text-blue-300">Login</a></p>
                         <form className="space-y-4 text-black" method="POST"  onSubmit={handleSubmit}>
                             <div className="flex space-x-4">
                                 <input type="text" name="fname" placeholder="First Name" className="w-1/2 px-4 py-2 rounded border" />
